@@ -37,10 +37,17 @@ namespace DatabaseBasics.View.Forms
 
         private void сведение_о_посещаемостяхBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.сведение_о_посещаемостяхBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
-
+            try
+            {
+                this.Validate();
+                this.сведение_о_посещаемостяхBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
+                MessageBox.Show("Данные успешно обновлены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void AttendanceForm_Load(object sender, EventArgs e)

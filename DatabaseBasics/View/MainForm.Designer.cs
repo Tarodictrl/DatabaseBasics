@@ -67,7 +67,7 @@ namespace DatabaseBasics
             this.справочникToolStripMenuItem});
             this.menuStrip2.Location = new System.Drawing.Point(0, 0);
             this.menuStrip2.Name = "menuStrip2";
-            this.menuStrip2.Size = new System.Drawing.Size(1067, 28);
+            this.menuStrip2.Size = new System.Drawing.Size(1067, 30);
             this.menuStrip2.TabIndex = 1;
             this.menuStrip2.Text = "menuStrip2";
             // 
@@ -77,7 +77,7 @@ namespace DatabaseBasics
             this.выходToolStripMenuItem,
             this.оПрогToolStripMenuItem});
             this.файлToolStripMenuItem.Name = "файлToolStripMenuItem";
-            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 24);
+            this.файлToolStripMenuItem.Size = new System.Drawing.Size(59, 26);
             this.файлToolStripMenuItem.Text = "Файл";
             // 
             // выходToolStripMenuItem
@@ -107,7 +107,7 @@ namespace DatabaseBasics
             this.расписаниеToolStripMenuItem,
             this.больничныеЛистыToolStripMenuItem});
             this.справочникToolStripMenuItem.Name = "справочникToolStripMenuItem";
-            this.справочникToolStripMenuItem.Size = new System.Drawing.Size(117, 24);
+            this.справочникToolStripMenuItem.Size = new System.Drawing.Size(117, 26);
             this.справочникToolStripMenuItem.Text = "Справочники";
             // 
             // врачиToolStripMenuItem
@@ -161,7 +161,7 @@ namespace DatabaseBasics
             this.toolStripButton5,
             this.toolStripButton6,
             this.toolStripButton7});
-            this.toolStrip1.Location = new System.Drawing.Point(0, 28);
+            this.toolStrip1.Location = new System.Drawing.Point(0, 30);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(1067, 37);
             this.toolStrip1.TabIndex = 2;
@@ -173,8 +173,9 @@ namespace DatabaseBasics
             this.toolStripButton1.Image = global::DatabaseBasics.Properties.Resources.doctor;
             this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.RightToLeftAutoMirrorImage = true;
             this.toolStripButton1.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton1.Text = "toolStripButton1";
+            this.toolStripButton1.Text = "Врачи";
             this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
             // 
             // toolStripButton2
@@ -184,7 +185,7 @@ namespace DatabaseBasics
             this.toolStripButton2.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton2.Name = "toolStripButton2";
             this.toolStripButton2.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton2.Text = "toolStripButton2";
+            this.toolStripButton2.Text = "Пациенты";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
             // toolStripButton3
@@ -194,7 +195,7 @@ namespace DatabaseBasics
             this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton3.Name = "toolStripButton3";
             this.toolStripButton3.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton3.Text = "toolStripButton3";
+            this.toolStripButton3.Text = "Больничные листы";
             this.toolStripButton3.Click += new System.EventHandler(this.toolStripButton3_Click);
             // 
             // toolStripButton4
@@ -204,7 +205,7 @@ namespace DatabaseBasics
             this.toolStripButton4.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton4.Name = "toolStripButton4";
             this.toolStripButton4.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton4.Text = "toolStripButton4";
+            this.toolStripButton4.Text = "Больничные листы";
             this.toolStripButton4.Click += new System.EventHandler(this.toolStripButton4_Click);
             // 
             // toolStripButton5
@@ -214,7 +215,7 @@ namespace DatabaseBasics
             this.toolStripButton5.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButton5.Name = "toolStripButton5";
             this.toolStripButton5.Size = new System.Drawing.Size(34, 34);
-            this.toolStripButton5.Text = "toolStripButton5";
+            this.toolStripButton5.Text = "Расписания";
             this.toolStripButton5.Click += new System.EventHandler(this.toolStripButton5_Click);
             // 
             // toolStripButton6

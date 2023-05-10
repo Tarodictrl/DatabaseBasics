@@ -36,12 +36,18 @@ namespace DatabaseBasics.View.Forms
 
         private void расписаниеBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.расписаниеBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
-
+            try
+            {
+                this.Validate();
+                this.расписаниеBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
+                MessageBox.Show("Данные успешно обновлены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
         private void ScheduleForm_Load(object sender, EventArgs e)
         {
             // TODO: данная строка кода позволяет загрузить данные в таблицу "hospitalDataSet.Расписание". При необходимости она может быть перемещена или удалена.

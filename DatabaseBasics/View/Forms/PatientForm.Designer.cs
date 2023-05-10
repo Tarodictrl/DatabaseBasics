@@ -55,6 +55,10 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripTextBox1 = new System.Windows.Forms.ToolStripTextBox();
+            this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
+            this.checkBox1 = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.hospitalDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.карточка_пациентаBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.карточка_пациентаBindingNavigator)).BeginInit();
@@ -105,7 +109,10 @@
             this.bindingNavigatorSeparator2,
             this.bindingNavigatorAddNewItem,
             this.bindingNavigatorDeleteItem,
-            this.карточка_пациентаBindingNavigatorSaveItem});
+            this.карточка_пациентаBindingNavigatorSaveItem,
+            this.toolStripSeparator1,
+            this.toolStripTextBox1,
+            this.toolStripButton1});
             this.карточка_пациентаBindingNavigator.Location = new System.Drawing.Point(0, 0);
             this.карточка_пациентаBindingNavigator.MoveFirstItem = this.bindingNavigatorMoveFirstItem;
             this.карточка_пациентаBindingNavigator.MoveLastItem = this.bindingNavigatorMoveLastItem;
@@ -113,7 +120,7 @@
             this.карточка_пациентаBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.карточка_пациентаBindingNavigator.Name = "карточка_пациентаBindingNavigator";
             this.карточка_пациентаBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.карточка_пациентаBindingNavigator.Size = new System.Drawing.Size(1067, 31);
+            this.карточка_пациентаBindingNavigator.Size = new System.Drawing.Size(1067, 27);
             this.карточка_пациентаBindingNavigator.TabIndex = 0;
             this.карточка_пациентаBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -123,13 +130,13 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
             // 
             // bindingNavigatorCountItem
             // 
             this.bindingNavigatorCountItem.Name = "bindingNavigatorCountItem";
-            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 28);
+            this.bindingNavigatorCountItem.Size = new System.Drawing.Size(55, 24);
             this.bindingNavigatorCountItem.Text = "для {0}";
             this.bindingNavigatorCountItem.ToolTipText = "Общее число элементов";
             // 
@@ -139,7 +146,7 @@
             this.bindingNavigatorDeleteItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorDeleteItem.Image")));
             this.bindingNavigatorDeleteItem.Name = "bindingNavigatorDeleteItem";
             this.bindingNavigatorDeleteItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorDeleteItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorDeleteItem.Text = "Удалить";
             // 
             // bindingNavigatorMoveFirstItem
@@ -148,7 +155,7 @@
             this.bindingNavigatorMoveFirstItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveFirstItem.Image")));
             this.bindingNavigatorMoveFirstItem.Name = "bindingNavigatorMoveFirstItem";
             this.bindingNavigatorMoveFirstItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveFirstItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveFirstItem.Text = "Переместить в начало";
             // 
             // bindingNavigatorMovePreviousItem
@@ -157,13 +164,13 @@
             this.bindingNavigatorMovePreviousItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMovePreviousItem.Image")));
             this.bindingNavigatorMovePreviousItem.Name = "bindingNavigatorMovePreviousItem";
             this.bindingNavigatorMovePreviousItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMovePreviousItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMovePreviousItem.Text = "Переместить назад";
             // 
             // bindingNavigatorSeparator
             // 
             this.bindingNavigatorSeparator.Name = "bindingNavigatorSeparator";
-            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorPositionItem
             // 
@@ -178,7 +185,7 @@
             // bindingNavigatorSeparator1
             // 
             this.bindingNavigatorSeparator1.Name = "bindingNavigatorSeparator1";
-            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator1.Size = new System.Drawing.Size(6, 27);
             // 
             // bindingNavigatorMoveNextItem
             // 
@@ -186,7 +193,7 @@
             this.bindingNavigatorMoveNextItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveNextItem.Image")));
             this.bindingNavigatorMoveNextItem.Name = "bindingNavigatorMoveNextItem";
             this.bindingNavigatorMoveNextItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveNextItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveNextItem.Text = "Переместить вперед";
             // 
             // bindingNavigatorMoveLastItem
@@ -195,20 +202,20 @@
             this.bindingNavigatorMoveLastItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorMoveLastItem.Image")));
             this.bindingNavigatorMoveLastItem.Name = "bindingNavigatorMoveLastItem";
             this.bindingNavigatorMoveLastItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorMoveLastItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorMoveLastItem.Text = "Переместить в конец";
             // 
             // bindingNavigatorSeparator2
             // 
             this.bindingNavigatorSeparator2.Name = "bindingNavigatorSeparator2";
-            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 31);
+            this.bindingNavigatorSeparator2.Size = new System.Drawing.Size(6, 27);
             // 
             // карточка_пациентаBindingNavigatorSaveItem
             // 
             this.карточка_пациентаBindingNavigatorSaveItem.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.карточка_пациентаBindingNavigatorSaveItem.Image = ((System.Drawing.Image)(resources.GetObject("карточка_пациентаBindingNavigatorSaveItem.Image")));
             this.карточка_пациентаBindingNavigatorSaveItem.Name = "карточка_пациентаBindingNavigatorSaveItem";
-            this.карточка_пациентаBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 28);
+            this.карточка_пациентаBindingNavigatorSaveItem.Size = new System.Drawing.Size(29, 24);
             this.карточка_пациентаBindingNavigatorSaveItem.Text = "Сохранить данные";
             this.карточка_пациентаBindingNavigatorSaveItem.Click += new System.EventHandler(this.карточка_пациентаBindingNavigatorSaveItem_Click);
             // 
@@ -226,11 +233,11 @@
             this.dataGridViewTextBoxColumn7});
             this.карточка_пациентаDataGridView.DataSource = this.карточка_пациентаBindingSource;
             this.карточка_пациентаDataGridView.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.карточка_пациентаDataGridView.Location = new System.Drawing.Point(0, 31);
+            this.карточка_пациентаDataGridView.Location = new System.Drawing.Point(0, 27);
             this.карточка_пациентаDataGridView.Margin = new System.Windows.Forms.Padding(4);
             this.карточка_пациентаDataGridView.Name = "карточка_пациентаDataGridView";
             this.карточка_пациентаDataGridView.RowHeadersWidth = 51;
-            this.карточка_пациентаDataGridView.Size = new System.Drawing.Size(1067, 565);
+            this.карточка_пациентаDataGridView.Size = new System.Drawing.Size(1067, 569);
             this.карточка_пациентаDataGridView.TabIndex = 1;
             this.карточка_пациентаDataGridView.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.карточка_пациентаDataGridView_CellFormatting);
             // 
@@ -296,11 +303,43 @@
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.Width = 125;
             // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 27);
+            // 
+            // toolStripTextBox1
+            // 
+            this.toolStripTextBox1.Font = new System.Drawing.Font("Segoe UI", 9F);
+            this.toolStripTextBox1.Name = "toolStripTextBox1";
+            this.toolStripTextBox1.Size = new System.Drawing.Size(100, 27);
+            // 
+            // toolStripButton1
+            // 
+            this.toolStripButton1.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton1.Image")));
+            this.toolStripButton1.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButton1.Name = "toolStripButton1";
+            this.toolStripButton1.Size = new System.Drawing.Size(76, 24);
+            this.toolStripButton1.Text = "Поиск";
+            this.toolStripButton1.Click += new System.EventHandler(this.toolStripButton1_Click);
+            // 
+            // checkBox1
+            // 
+            this.checkBox1.AutoSize = true;
+            this.checkBox1.Location = new System.Drawing.Point(573, 4);
+            this.checkBox1.Name = "checkBox1";
+            this.checkBox1.Size = new System.Drawing.Size(78, 20);
+            this.checkBox1.TabIndex = 3;
+            this.checkBox1.Text = "Фильтр";
+            this.checkBox1.UseVisualStyleBackColor = true;
+            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
             // PatientForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1067, 596);
+            this.Controls.Add(this.checkBox1);
             this.Controls.Add(this.карточка_пациентаDataGridView);
             this.Controls.Add(this.карточка_пациентаBindingNavigator);
             this.Margin = new System.Windows.Forms.Padding(4);
@@ -346,5 +385,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn7;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripTextBox toolStripTextBox1;
+        private System.Windows.Forms.ToolStripButton toolStripButton1;
+        private System.Windows.Forms.CheckBox checkBox1;
     }
 }

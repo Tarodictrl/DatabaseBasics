@@ -36,10 +36,17 @@ namespace DatabaseBasics.View.Forms
 
         private void карточка_пациентаBindingNavigatorSaveItem_Click(object sender, EventArgs e)
         {
-            this.Validate();
-            this.карточка_пациентаBindingSource.EndEdit();
-            this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
-
+            try
+            {
+                this.Validate();
+                this.карточка_пациентаBindingSource.EndEdit();
+                this.tableAdapterManager.UpdateAll(this.hospitalDataSet);
+                MessageBox.Show("Данные успешно обновлены!", "Успех", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            catch (Exception error)
+            {
+                MessageBox.Show(error.Message, "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void PatientForm_Load(object sender, EventArgs e)
@@ -65,6 +72,66 @@ namespace DatabaseBasics.View.Forms
                     break;
     
             }
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                if (toolStripTextBox1.Text == "")
+                    MessageBox.Show("Вы ничего не задали", "Внимание",
+                   MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    try
+                    {
+                        карточка_пациентаBindingSource.Filter = GetSelectedFieldName() + "='" + toolStripTextBox1.Text + "'";
+                    }
+                    catch (Exception err)
+                    {
+                        MessageBox.Show("Ошибка фильтрации \n" + err.Message);
+                    }
+            }
+            else
+                карточка_пациентаBindingSource.Filter = "";
+            if (карточка_пациентаBindingSource.Count == 0)
+            {
+                MessageBox.Show("Нет таких");
+                карточка_пациентаBindingSource.Filter = "";
+                checkBox1.Checked = false;
+            }
+        }
+
+        private void toolStripButton1_Click(object sender, EventArgs e)
+        {
+            if (toolStripTextBox1.Text == "")
+            {
+                MessageBox.Show("Вы ничего не задали", "Внимание",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
+            int indexPos;
+            try
+            {
+                indexPos = карточка_пациентаBindingSource.Find(GetSelectedFieldName(), toolStripTextBox1.Text);
+            }
+            catch (Exception err)
+            {
+                MessageBox.Show("Ошибка поиска \n" + err.Message);
+                return;
+            }
+            if (indexPos > -1)
+                карточка_пациентаBindingSource.Position = indexPos;
+            else
+            {
+                MessageBox.Show("Таких пациентов нет", "Внимание",
+                MessageBoxButtons.OK, MessageBoxIcon.Information);
+                карточка_пациентаBindingSource.Position = 0;
+            }
+        }
+
+        string GetSelectedFieldName()
+        {
+            return карточка_пациентаDataGridView.Columns[карточка_пациентаDataGridView.CurrentCell.ColumnIndex].DataPropertyName;
         }
     }
 }
