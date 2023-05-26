@@ -54,6 +54,13 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton7 = new System.Windows.Forms.ToolStripButton();
             this.больничный_листDataGridView = new System.Windows.Forms.DataGridView();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Продолжительность = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ФИО_пациента = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.врачиTableAdapter = new DatabaseBasics.Databases.HospitalDataSetTableAdapters.ВрачиTableAdapter();
             this.tableAdapterManager = new DatabaseBasics.Databases.HospitalDataSetTableAdapters.TableAdapterManager();
             this.больничный_листTableAdapter = new DatabaseBasics.Databases.HospitalDataSetTableAdapters.Больничный_листTableAdapter();
@@ -78,13 +85,6 @@
             this.расписаниеTextBox = new System.Windows.Forms.TextBox();
             this.карточка_пациентаBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.карточка_пациентаTableAdapter = new DatabaseBasics.Databases.HospitalDataSetTableAdapters.Карточка_пациентаTableAdapter();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Продолжительность = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ФИО_пациента = new System.Windows.Forms.DataGridViewTextBoxColumn();
             idLabel = new System.Windows.Forms.Label();
             фИОLabel = new System.Windows.Forms.Label();
             категорияLabel = new System.Windows.Forms.Label();
@@ -169,7 +169,7 @@
             this.groupBox1.Size = new System.Drawing.Size(1096, 541);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Врачи";
+            this.groupBox1.Text = "Больничный лист";
             // 
             // bindingNavigator1
             // 
@@ -334,6 +334,65 @@
             this.больничный_листDataGridView.RowTemplate.Height = 24;
             this.больничный_листDataGridView.Size = new System.Drawing.Size(1078, 470);
             this.больничный_листDataGridView.TabIndex = 0;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
+            this.dataGridViewTextBoxColumn1.HeaderText = "id";
+            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "Начало больничного";
+            this.dataGridViewTextBoxColumn2.HeaderText = "Начало больничного";
+            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn3
+            // 
+            this.dataGridViewTextBoxColumn3.DataPropertyName = "Конец больничного";
+            this.dataGridViewTextBoxColumn3.HeaderText = "Конец больничного";
+            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
+            this.dataGridViewTextBoxColumn3.Width = 125;
+            // 
+            // Продолжительность
+            // 
+            this.Продолжительность.DataPropertyName = "Продолжительность";
+            this.Продолжительность.HeaderText = "Продолжительность";
+            this.Продолжительность.MinimumWidth = 6;
+            this.Продолжительность.Name = "Продолжительность";
+            this.Продолжительность.ReadOnly = true;
+            this.Продолжительность.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn4
+            // 
+            this.dataGridViewTextBoxColumn4.DataPropertyName = "Врач";
+            this.dataGridViewTextBoxColumn4.HeaderText = "Врач";
+            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
+            this.dataGridViewTextBoxColumn4.Width = 125;
+            // 
+            // dataGridViewTextBoxColumn5
+            // 
+            this.dataGridViewTextBoxColumn5.DataPropertyName = "Номер карточки";
+            this.dataGridViewTextBoxColumn5.HeaderText = "Номер карточки";
+            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
+            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
+            this.dataGridViewTextBoxColumn5.Width = 125;
+            // 
+            // ФИО_пациента
+            // 
+            this.ФИО_пациента.DataPropertyName = "ФИО_пациента";
+            this.ФИО_пациента.HeaderText = "ФИО_пациента";
+            this.ФИО_пациента.MinimumWidth = 6;
+            this.ФИО_пациента.Name = "ФИО_пациента";
+            this.ФИО_пациента.ReadOnly = true;
+            this.ФИО_пациента.Width = 125;
             // 
             // врачиTableAdapter
             // 
@@ -535,65 +594,6 @@
             // карточка_пациентаTableAdapter
             // 
             this.карточка_пациентаTableAdapter.ClearBeforeFill = true;
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "id";
-            this.dataGridViewTextBoxColumn1.HeaderText = "id";
-            this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "Начало больничного";
-            this.dataGridViewTextBoxColumn2.HeaderText = "Начало больничного";
-            this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn3
-            // 
-            this.dataGridViewTextBoxColumn3.DataPropertyName = "Конец больничного";
-            this.dataGridViewTextBoxColumn3.HeaderText = "Конец больничного";
-            this.dataGridViewTextBoxColumn3.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
-            this.dataGridViewTextBoxColumn3.Width = 125;
-            // 
-            // Продолжительность
-            // 
-            this.Продолжительность.DataPropertyName = "Продолжительность";
-            this.Продолжительность.HeaderText = "Продолжительность";
-            this.Продолжительность.MinimumWidth = 6;
-            this.Продолжительность.Name = "Продолжительность";
-            this.Продолжительность.ReadOnly = true;
-            this.Продолжительность.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn4
-            // 
-            this.dataGridViewTextBoxColumn4.DataPropertyName = "Врач";
-            this.dataGridViewTextBoxColumn4.HeaderText = "Врач";
-            this.dataGridViewTextBoxColumn4.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
-            this.dataGridViewTextBoxColumn4.Width = 125;
-            // 
-            // dataGridViewTextBoxColumn5
-            // 
-            this.dataGridViewTextBoxColumn5.DataPropertyName = "Номер карточки";
-            this.dataGridViewTextBoxColumn5.HeaderText = "Номер карточки";
-            this.dataGridViewTextBoxColumn5.MinimumWidth = 6;
-            this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.Width = 125;
-            // 
-            // ФИО_пациента
-            // 
-            this.ФИО_пациента.DataPropertyName = "ФИО_пациента";
-            this.ФИО_пациента.HeaderText = "ФИО_пациента";
-            this.ФИО_пациента.MinimumWidth = 6;
-            this.ФИО_пациента.Name = "ФИО_пациента";
-            this.ФИО_пациента.ReadOnly = true;
-            this.ФИО_пациента.Width = 125;
             // 
             // SickLeaveForm
             // 

@@ -1,4 +1,6 @@
-﻿namespace DatabaseBasics.Databases
+﻿using System.Data.SqlClient;
+
+namespace DatabaseBasics.Databases
 {
 
 

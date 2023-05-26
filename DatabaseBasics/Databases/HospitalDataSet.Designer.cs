@@ -24,8 +24,6 @@ namespace DatabaseBasics.Databases {
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
     public partial class HospitalDataSet : global::System.Data.DataSet {
         
-        private Больничный_листDataTable tableБольничный_лист;
-        
         private ВрачиDataTable tableВрачи;
         
         private РасписаниеDataTable tableРасписание;
@@ -34,15 +32,17 @@ namespace DatabaseBasics.Databases {
         
         private Карточка_пациентаDataTable tableКарточка_пациента;
         
-        private global::System.Data.DataRelation relationБольничный_лист_FK;
+        private Больничный_листDataTable tableБольничный_лист;
         
         private global::System.Data.DataRelation relationВрачи_FK;
         
         private global::System.Data.DataRelation relationСведение_о_посещаемостях_FK;
         
-        private global::System.Data.DataRelation relationБольничный_лист_FK_1;
-        
         private global::System.Data.DataRelation relationСведение_о_посещаемостях_FK_карточка;
+        
+        private global::System.Data.DataRelation relationБольничный_лист_FK;
+        
+        private global::System.Data.DataRelation relationБольничный_лист_FK_1;
         
         private global::System.Data.SchemaSerializationMode _schemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
         
@@ -55,7 +55,6 @@ namespace DatabaseBasics.Databases {
             base.Tables.CollectionChanged += schemaChangedHandler;
             base.Relations.CollectionChanged += schemaChangedHandler;
             this.EndInit();
-            this.InitExpressions();
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -67,18 +66,12 @@ namespace DatabaseBasics.Databases {
                 global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler1 = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
                 this.Tables.CollectionChanged += schemaChangedHandler1;
                 this.Relations.CollectionChanged += schemaChangedHandler1;
-                if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.ExcludeSchema)) {
-                    this.InitExpressions();
-                }
                 return;
             }
             string strSchema = ((string)(info.GetValue("XmlSchema", typeof(string))));
             if ((this.DetermineSchemaSerializationMode(info, context) == global::System.Data.SchemaSerializationMode.IncludeSchema)) {
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                if ((ds.Tables["Больничный лист"] != null)) {
-                    base.Tables.Add(new Больничный_листDataTable(ds.Tables["Больничный лист"]));
-                }
                 if ((ds.Tables["Врачи"] != null)) {
                     base.Tables.Add(new ВрачиDataTable(ds.Tables["Врачи"]));
                 }
@@ -91,6 +84,9 @@ namespace DatabaseBasics.Databases {
                 if ((ds.Tables["Карточка пациента"] != null)) {
                     base.Tables.Add(new Карточка_пациентаDataTable(ds.Tables["Карточка пациента"]));
                 }
+                if ((ds.Tables["Больничный лист"] != null)) {
+                    base.Tables.Add(new Больничный_листDataTable(ds.Tables["Больничный лист"]));
+                }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
                 this.Namespace = ds.Namespace;
@@ -102,22 +98,11 @@ namespace DatabaseBasics.Databases {
             }
             else {
                 this.ReadXmlSchema(new global::System.Xml.XmlTextReader(new global::System.IO.StringReader(strSchema)));
-                this.InitExpressions();
             }
             this.GetSerializationData(info, context);
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
             base.Tables.CollectionChanged += schemaChangedHandler;
             this.Relations.CollectionChanged += schemaChangedHandler;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Browsable(false)]
-        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
-        public Больничный_листDataTable Больничный_лист {
-            get {
-                return this.tableБольничный_лист;
-            }
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -157,6 +142,16 @@ namespace DatabaseBasics.Databases {
         public Карточка_пациентаDataTable Карточка_пациента {
             get {
                 return this.tableКарточка_пациента;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public Больничный_листDataTable Больничный_лист {
+            get {
+                return this.tableБольничный_лист;
             }
         }
         
@@ -204,7 +199,6 @@ namespace DatabaseBasics.Databases {
         public override global::System.Data.DataSet Clone() {
             HospitalDataSet cln = ((HospitalDataSet)(base.Clone()));
             cln.InitVars();
-            cln.InitExpressions();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
         }
@@ -228,9 +222,6 @@ namespace DatabaseBasics.Databases {
                 this.Reset();
                 global::System.Data.DataSet ds = new global::System.Data.DataSet();
                 ds.ReadXml(reader);
-                if ((ds.Tables["Больничный лист"] != null)) {
-                    base.Tables.Add(new Больничный_листDataTable(ds.Tables["Больничный лист"]));
-                }
                 if ((ds.Tables["Врачи"] != null)) {
                     base.Tables.Add(new ВрачиDataTable(ds.Tables["Врачи"]));
                 }
@@ -242,6 +233,9 @@ namespace DatabaseBasics.Databases {
                 }
                 if ((ds.Tables["Карточка пациента"] != null)) {
                     base.Tables.Add(new Карточка_пациентаDataTable(ds.Tables["Карточка пациента"]));
+                }
+                if ((ds.Tables["Больничный лист"] != null)) {
+                    base.Tables.Add(new Больничный_листDataTable(ds.Tables["Больничный лист"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -276,12 +270,6 @@ namespace DatabaseBasics.Databases {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         internal void InitVars(bool initTable) {
-            this.tableБольничный_лист = ((Больничный_листDataTable)(base.Tables["Больничный лист"]));
-            if ((initTable == true)) {
-                if ((this.tableБольничный_лист != null)) {
-                    this.tableБольничный_лист.InitVars();
-                }
-            }
             this.tableВрачи = ((ВрачиDataTable)(base.Tables["Врачи"]));
             if ((initTable == true)) {
                 if ((this.tableВрачи != null)) {
@@ -306,11 +294,17 @@ namespace DatabaseBasics.Databases {
                     this.tableКарточка_пациента.InitVars();
                 }
             }
-            this.relationБольничный_лист_FK = this.Relations["Больничный_лист_FK"];
+            this.tableБольничный_лист = ((Больничный_листDataTable)(base.Tables["Больничный лист"]));
+            if ((initTable == true)) {
+                if ((this.tableБольничный_лист != null)) {
+                    this.tableБольничный_лист.InitVars();
+                }
+            }
             this.relationВрачи_FK = this.Relations["Врачи_FK"];
             this.relationСведение_о_посещаемостях_FK = this.Relations["Сведение_о_посещаемостях_FK"];
-            this.relationБольничный_лист_FK_1 = this.Relations["Больничный_лист_FK_1"];
             this.relationСведение_о_посещаемостях_FK_карточка = this.Relations["Сведение_о_посещаемостях_FK_карточка"];
+            this.relationБольничный_лист_FK = this.Relations["Больничный_лист_FK"];
+            this.relationБольничный_лист_FK_1 = this.Relations["Больничный_лист_FK_1"];
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -321,8 +315,6 @@ namespace DatabaseBasics.Databases {
             this.Namespace = "http://tempuri.org/HospitalDataSet.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
-            this.tableБольничный_лист = new Больничный_листDataTable(false);
-            base.Tables.Add(this.tableБольничный_лист);
             this.tableВрачи = new ВрачиDataTable();
             base.Tables.Add(this.tableВрачи);
             this.tableРасписание = new РасписаниеDataTable();
@@ -331,10 +323,8 @@ namespace DatabaseBasics.Databases {
             base.Tables.Add(this.tableСведение_о_посещаемостях);
             this.tableКарточка_пациента = new Карточка_пациентаDataTable();
             base.Tables.Add(this.tableКарточка_пациента);
-            this.relationБольничный_лист_FK = new global::System.Data.DataRelation("Больничный_лист_FK", new global::System.Data.DataColumn[] {
-                        this.tableВрачи.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableБольничный_лист.ВрачColumn}, false);
-            this.Relations.Add(this.relationБольничный_лист_FK);
+            this.tableБольничный_лист = new Больничный_листDataTable();
+            base.Tables.Add(this.tableБольничный_лист);
             this.relationВрачи_FK = new global::System.Data.DataRelation("Врачи_FK", new global::System.Data.DataColumn[] {
                         this.tableРасписание.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableВрачи.РасписаниеColumn}, false);
@@ -343,20 +333,18 @@ namespace DatabaseBasics.Databases {
                         this.tableВрачи.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableСведение_о_посещаемостях.ВрачColumn}, false);
             this.Relations.Add(this.relationСведение_о_посещаемостях_FK);
-            this.relationБольничный_лист_FK_1 = new global::System.Data.DataRelation("Больничный_лист_FK_1", new global::System.Data.DataColumn[] {
-                        this.tableКарточка_пациента.idColumn}, new global::System.Data.DataColumn[] {
-                        this.tableБольничный_лист.Номер_карточкиColumn}, false);
-            this.Relations.Add(this.relationБольничный_лист_FK_1);
             this.relationСведение_о_посещаемостях_FK_карточка = new global::System.Data.DataRelation("Сведение_о_посещаемостях_FK_карточка", new global::System.Data.DataColumn[] {
                         this.tableКарточка_пациента.idColumn}, new global::System.Data.DataColumn[] {
                         this.tableСведение_о_посещаемостях.Номер_карточкиColumn}, false);
             this.Relations.Add(this.relationСведение_о_посещаемостях_FK_карточка);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private bool ShouldSerializeБольничный_лист() {
-            return false;
+            this.relationБольничный_лист_FK = new global::System.Data.DataRelation("Больничный_лист_FK", new global::System.Data.DataColumn[] {
+                        this.tableВрачи.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableБольничный_лист.ВрачColumn}, false);
+            this.Relations.Add(this.relationБольничный_лист_FK);
+            this.relationБольничный_лист_FK_1 = new global::System.Data.DataRelation("Больничный_лист_FK_1", new global::System.Data.DataColumn[] {
+                        this.tableКарточка_пациента.idColumn}, new global::System.Data.DataColumn[] {
+                        this.tableБольничный_лист.Номер_карточкиColumn}, false);
+            this.Relations.Add(this.relationБольничный_лист_FK_1);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -380,6 +368,12 @@ namespace DatabaseBasics.Databases {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private bool ShouldSerializeКарточка_пациента() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private bool ShouldSerializeБольничный_лист() {
             return false;
         }
         
@@ -438,16 +432,6 @@ namespace DatabaseBasics.Databases {
             return type;
         }
         
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitExpressions() {
-            this.Больничный_лист.ФИО_пациентаColumn.Expression = "Parent(Больничный_лист_FK_1).ФИО";
-            this.Больничный_лист.ПродолжительностьColumn.Expression = "[Конец больничного] - [Начало больничного]";
-        }
-        
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public delegate void Больничный_листRowChangeEventHandler(object sender, Больничный_листRowChangeEvent e);
-        
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void ВрачиRowChangeEventHandler(object sender, ВрачиRowChangeEvent e);
         
@@ -460,401 +444,8 @@ namespace DatabaseBasics.Databases {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public delegate void Карточка_пациентаRowChangeEventHandler(object sender, Карточка_пациентаRowChangeEvent e);
         
-        /// <summary>
-        ///Represents the strongly named DataTable class.
-        ///</summary>
-        [global::System.Serializable()]
-        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
-        public partial class Больничный_листDataTable : global::System.Data.TypedTableBase<Больничный_листRow> {
-            
-            private global::System.Data.DataColumn columnid;
-            
-            private global::System.Data.DataColumn columnНачало_больничного;
-            
-            private global::System.Data.DataColumn columnКонец_больничного;
-            
-            private global::System.Data.DataColumn columnВрач;
-            
-            private global::System.Data.DataColumn columnНомер_карточки;
-            
-            private global::System.Data.DataColumn columnФИО_пациента;
-            
-            private global::System.Data.DataColumn columnПродолжительность;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листDataTable() : 
-                    this(false) {
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листDataTable(bool initExpressions) {
-                this.TableName = "Больничный лист";
-                this.BeginInit();
-                this.InitClass();
-                if ((initExpressions == true)) {
-                    this.InitExpressions();
-                }
-                this.EndInit();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal Больничный_листDataTable(global::System.Data.DataTable table) {
-                this.TableName = table.TableName;
-                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
-                    this.CaseSensitive = table.CaseSensitive;
-                }
-                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
-                    this.Locale = table.Locale;
-                }
-                if ((table.Namespace != table.DataSet.Namespace)) {
-                    this.Namespace = table.Namespace;
-                }
-                this.Prefix = table.Prefix;
-                this.MinimumCapacity = table.MinimumCapacity;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected Больничный_листDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
-                    base(info, context) {
-                this.InitVars();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn idColumn {
-                get {
-                    return this.columnid;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Начало_больничногоColumn {
-                get {
-                    return this.columnНачало_больничного;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Конец_больничногоColumn {
-                get {
-                    return this.columnКонец_больничного;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ВрачColumn {
-                get {
-                    return this.columnВрач;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn Номер_карточкиColumn {
-                get {
-                    return this.columnНомер_карточки;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ФИО_пациентаColumn {
-                get {
-                    return this.columnФИО_пациента;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataColumn ПродолжительностьColumn {
-                get {
-                    return this.columnПродолжительность;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            [global::System.ComponentModel.Browsable(false)]
-            public int Count {
-                get {
-                    return this.Rows.Count;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow this[int index] {
-                get {
-                    return ((Больничный_листRow)(this.Rows[index]));
-                }
-            }
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event Больничный_листRowChangeEventHandler Больничный_листRowChanging;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event Больничный_листRowChangeEventHandler Больничный_листRowChanged;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event Больничный_листRowChangeEventHandler Больничный_листRowDeleting;
-            
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public event Больничный_листRowChangeEventHandler Больничный_листRowDeleted;
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void AddБольничный_листRow(Больничный_листRow row) {
-                this.Rows.Add(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow AddБольничный_листRow(System.DateTime Начало_больничного, System.DateTime Конец_больничного, ВрачиRow parentВрачиRowByБольничный_лист_FK, Карточка_пациентаRow parentКарточка_пациентаRowByБольничный_лист_FK_1, string ФИО_пациента, string Продолжительность) {
-                Больничный_листRow rowБольничный_листRow = ((Больничный_листRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Начало_больничного,
-                        Конец_больничного,
-                        null,
-                        null,
-                        ФИО_пациента,
-                        Продолжительность};
-                if ((parentВрачиRowByБольничный_лист_FK != null)) {
-                    columnValuesArray[3] = parentВрачиRowByБольничный_лист_FK[0];
-                }
-                if ((parentКарточка_пациентаRowByБольничный_лист_FK_1 != null)) {
-                    columnValuesArray[4] = parentКарточка_пациентаRowByБольничный_лист_FK_1[0];
-                }
-                rowБольничный_листRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowБольничный_листRow);
-                return rowБольничный_листRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow AddБольничный_листRow(System.DateTime Начало_больничного, System.DateTime Конец_больничного, ВрачиRow parentВрачиRowByБольничный_лист_FK, Карточка_пациентаRow parentКарточка_пациентаRowByБольничный_лист_FK_1) {
-                Больничный_листRow rowБольничный_листRow = ((Больничный_листRow)(this.NewRow()));
-                object[] columnValuesArray = new object[] {
-                        null,
-                        Начало_больничного,
-                        Конец_больничного,
-                        null,
-                        null,
-                        null,
-                        null};
-                if ((parentВрачиRowByБольничный_лист_FK != null)) {
-                    columnValuesArray[3] = parentВрачиRowByБольничный_лист_FK[0];
-                }
-                if ((parentКарточка_пациентаRowByБольничный_лист_FK_1 != null)) {
-                    columnValuesArray[4] = parentКарточка_пациентаRowByБольничный_лист_FK_1[0];
-                }
-                rowБольничный_листRow.ItemArray = columnValuesArray;
-                this.Rows.Add(rowБольничный_листRow);
-                return rowБольничный_листRow;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow FindByid(int id) {
-                return ((Больничный_листRow)(this.Rows.Find(new object[] {
-                            id})));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public override global::System.Data.DataTable Clone() {
-                Больничный_листDataTable cln = ((Больничный_листDataTable)(base.Clone()));
-                cln.InitVars();
-                return cln;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataTable CreateInstance() {
-                return new Больничный_листDataTable();
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal void InitVars() {
-                this.columnid = base.Columns["id"];
-                this.columnНачало_больничного = base.Columns["Начало больничного"];
-                this.columnКонец_больничного = base.Columns["Конец больничного"];
-                this.columnВрач = base.Columns["Врач"];
-                this.columnНомер_карточки = base.Columns["Номер карточки"];
-                this.columnФИО_пациента = base.Columns["ФИО_пациента"];
-                this.columnПродолжительность = base.Columns["Продолжительность"];
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitClass() {
-                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnid);
-                this.columnНачало_больничного = new global::System.Data.DataColumn("Начало больничного", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnНачало_больничного);
-                this.columnКонец_больничного = new global::System.Data.DataColumn("Конец больничного", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnКонец_больничного);
-                this.columnВрач = new global::System.Data.DataColumn("Врач", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnВрач);
-                this.columnНомер_карточки = new global::System.Data.DataColumn("Номер карточки", typeof(int), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnНомер_карточки);
-                this.columnФИО_пациента = new global::System.Data.DataColumn("ФИО_пациента", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnФИО_пациента);
-                this.columnПродолжительность = new global::System.Data.DataColumn("Продолжительность", typeof(string), null, global::System.Data.MappingType.Element);
-                base.Columns.Add(this.columnПродолжительность);
-                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
-                                this.columnid}, true));
-                this.columnid.AutoIncrement = true;
-                this.columnid.AutoIncrementSeed = -1;
-                this.columnid.AutoIncrementStep = -1;
-                this.columnid.AllowDBNull = false;
-                this.columnid.ReadOnly = true;
-                this.columnid.Unique = true;
-                this.columnНачало_больничного.AllowDBNull = false;
-                this.columnКонец_больничного.AllowDBNull = false;
-                this.columnВрач.AllowDBNull = false;
-                this.columnФИО_пациента.ReadOnly = true;
-                this.columnПродолжительность.ReadOnly = true;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow NewБольничный_листRow() {
-                return ((Больничный_листRow)(this.NewRow()));
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
-                return new Больничный_листRow(builder);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override global::System.Type GetRowType() {
-                return typeof(Больничный_листRow);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            private void InitExpressions() {
-                this.ФИО_пациентаColumn.Expression = "Parent(Больничный_лист_FK_1).ФИО";
-                this.ПродолжительностьColumn.Expression = "[Конец больничного] - [Начало больничного]";
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanged(e);
-                if ((this.Больничный_листRowChanged != null)) {
-                    this.Больничный_листRowChanged(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowChanging(e);
-                if ((this.Больничный_листRowChanging != null)) {
-                    this.Больничный_листRowChanging(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleted(e);
-                if ((this.Больничный_листRowDeleted != null)) {
-                    this.Больничный_листRowDeleted(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
-                base.OnRowDeleting(e);
-                if ((this.Больничный_листRowDeleting != null)) {
-                    this.Больничный_листRowDeleting(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void RemoveБольничный_листRow(Больничный_листRow row) {
-                this.Rows.Remove(row);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
-                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                HospitalDataSet ds = new HospitalDataSet();
-                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
-                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
-                any1.MinOccurs = new decimal(0);
-                any1.MaxOccurs = decimal.MaxValue;
-                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any1);
-                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
-                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
-                any2.MinOccurs = new decimal(1);
-                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
-                sequence.Items.Add(any2);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute1.Name = "namespace";
-                attribute1.FixedValue = ds.Namespace;
-                type.Attributes.Add(attribute1);
-                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
-                attribute2.Name = "tableTypeName";
-                attribute2.FixedValue = "Больничный_листDataTable";
-                type.Attributes.Add(attribute2);
-                type.Particle = sequence;
-                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
-                if (xs.Contains(dsSchema.TargetNamespace)) {
-                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
-                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
-                    try {
-                        global::System.Xml.Schema.XmlSchema schema = null;
-                        dsSchema.Write(s1);
-                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
-                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
-                            s2.SetLength(0);
-                            schema.Write(s2);
-                            if ((s1.Length == s2.Length)) {
-                                s1.Position = 0;
-                                s2.Position = 0;
-                                for (; ((s1.Position != s1.Length) 
-                                            && (s1.ReadByte() == s2.ReadByte())); ) {
-                                    ;
-                                }
-                                if ((s1.Position == s1.Length)) {
-                                    return type;
-                                }
-                            }
-                        }
-                    }
-                    finally {
-                        if ((s1 != null)) {
-                            s1.Close();
-                        }
-                        if ((s2 != null)) {
-                            s2.Close();
-                        }
-                    }
-                }
-                xs.Add(dsSchema);
-                return type;
-            }
-        }
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public delegate void Больничный_листRowChangeEventHandler(object sender, Больничный_листRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -2238,168 +1829,329 @@ namespace DatabaseBasics.Databases {
         }
         
         /// <summary>
-        ///Represents strongly named DataRow class.
+        ///Represents the strongly named DataTable class.
         ///</summary>
-        public partial class Больничный_листRow : global::System.Data.DataRow {
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class Больничный_листDataTable : global::System.Data.TypedTableBase<Больничный_листRow> {
             
-            private Больничный_листDataTable tableБольничный_лист;
+            private global::System.Data.DataColumn columnid;
+            
+            private global::System.Data.DataColumn columnНачало_больничного;
+            
+            private global::System.Data.DataColumn columnКонец_больничного;
+            
+            private global::System.Data.DataColumn columnВрач;
+            
+            private global::System.Data.DataColumn columnНомер_карточки;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            internal Больничный_листRow(global::System.Data.DataRowBuilder rb) : 
-                    base(rb) {
-                this.tableБольничный_лист = ((Больничный_листDataTable)(this.Table));
+            public Больничный_листDataTable() {
+                this.TableName = "Больничный лист";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int id {
-                get {
-                    return ((int)(this[this.tableБольничный_лист.idColumn]));
+            internal Больничный_листDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
                 }
-                set {
-                    this[this.tableБольничный_лист.idColumn] = value;
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected Больничный_листDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn idColumn {
+                get {
+                    return this.columnid;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime Начало_больничного {
+            public global::System.Data.DataColumn Начало_больничногоColumn {
                 get {
-                    return ((global::System.DateTime)(this[this.tableБольничный_лист.Начало_больничногоColumn]));
-                }
-                set {
-                    this[this.tableБольничный_лист.Начало_больничногоColumn] = value;
+                    return this.columnНачало_больничного;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public System.DateTime Конец_больничного {
+            public global::System.Data.DataColumn Конец_больничногоColumn {
                 get {
-                    return ((global::System.DateTime)(this[this.tableБольничный_лист.Конец_больничногоColumn]));
-                }
-                set {
-                    this[this.tableБольничный_лист.Конец_больничногоColumn] = value;
+                    return this.columnКонец_больничного;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Врач {
+            public global::System.Data.DataColumn ВрачColumn {
                 get {
-                    return ((int)(this[this.tableБольничный_лист.ВрачColumn]));
-                }
-                set {
-                    this[this.tableБольничный_лист.ВрачColumn] = value;
+                    return this.columnВрач;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public int Номер_карточки {
+            public global::System.Data.DataColumn Номер_карточкиColumn {
                 get {
+                    return this.columnНомер_карточки;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow this[int index] {
+                get {
+                    return ((Больничный_листRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event Больничный_листRowChangeEventHandler Больничный_листRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event Больничный_листRowChangeEventHandler Больничный_листRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event Больничный_листRowChangeEventHandler Больничный_листRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public event Больничный_листRowChangeEventHandler Больничный_листRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void AddБольничный_листRow(Больничный_листRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow AddБольничный_листRow(System.DateTime Начало_больничного, System.DateTime Конец_больничного, ВрачиRow parentВрачиRowByБольничный_лист_FK, Карточка_пациентаRow parentКарточка_пациентаRowByБольничный_лист_FK_1) {
+                Больничный_листRow rowБольничный_листRow = ((Больничный_листRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        null,
+                        Начало_больничного,
+                        Конец_больничного,
+                        null,
+                        null};
+                if ((parentВрачиRowByБольничный_лист_FK != null)) {
+                    columnValuesArray[3] = parentВрачиRowByБольничный_лист_FK[0];
+                }
+                if ((parentКарточка_пациентаRowByБольничный_лист_FK_1 != null)) {
+                    columnValuesArray[4] = parentКарточка_пациентаRowByБольничный_лист_FK_1[0];
+                }
+                rowБольничный_листRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowБольничный_листRow);
+                return rowБольничный_листRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow FindByid(int id) {
+                return ((Больничный_листRow)(this.Rows.Find(new object[] {
+                            id})));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                Больничный_листDataTable cln = ((Больничный_листDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new Больничный_листDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            internal void InitVars() {
+                this.columnid = base.Columns["id"];
+                this.columnНачало_больничного = base.Columns["Начало больничного"];
+                this.columnКонец_больничного = base.Columns["Конец больничного"];
+                this.columnВрач = base.Columns["Врач"];
+                this.columnНомер_карточки = base.Columns["Номер карточки"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            private void InitClass() {
+                this.columnid = new global::System.Data.DataColumn("id", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnid);
+                this.columnНачало_больничного = new global::System.Data.DataColumn("Начало больничного", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnНачало_больничного);
+                this.columnКонец_больничного = new global::System.Data.DataColumn("Конец больничного", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnКонец_больничного);
+                this.columnВрач = new global::System.Data.DataColumn("Врач", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnВрач);
+                this.columnНомер_карточки = new global::System.Data.DataColumn("Номер карточки", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnНомер_карточки);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnid}, true));
+                this.columnid.AutoIncrement = true;
+                this.columnid.AutoIncrementSeed = -1;
+                this.columnid.AutoIncrementStep = -1;
+                this.columnid.AllowDBNull = false;
+                this.columnid.ReadOnly = true;
+                this.columnid.Unique = true;
+                this.columnНачало_больничного.AllowDBNull = false;
+                this.columnКонец_больничного.AllowDBNull = false;
+                this.columnВрач.AllowDBNull = false;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow NewБольничный_листRow() {
+                return ((Больничный_листRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new Больничный_листRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(Больничный_листRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.Больничный_листRowChanged != null)) {
+                    this.Больничный_листRowChanged(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.Больничный_листRowChanging != null)) {
+                    this.Больничный_листRowChanging(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.Больничный_листRowDeleted != null)) {
+                    this.Больничный_листRowDeleted(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.Больничный_листRowDeleting != null)) {
+                    this.Больничный_листRowDeleting(this, new Больничный_листRowChangeEvent(((Больничный_листRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void RemoveБольничный_листRow(Больничный_листRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                HospitalDataSet ds = new HospitalDataSet();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "Больничный_листDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
                     try {
-                        return ((int)(this[this.tableБольничный_лист.Номер_карточкиColumn]));
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
                     }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Номер карточки\' в таблице \'Больничный лист\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableБольничный_лист.Номер_карточкиColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string ФИО_пациента {
-                get {
-                    try {
-                        return ((string)(this[this.tableБольничный_лист.ФИО_пациентаColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'ФИО_пациента\' в таблице \'Больничный лист\' равно DBNull.", e);
-                    }
-                }
-                set {
-                    this[this.tableБольничный_лист.ФИО_пациентаColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public string Продолжительность {
-                get {
-                    try {
-                        return ((string)(this[this.tableБольничный_лист.ПродолжительностьColumn]));
-                    }
-                    catch (global::System.InvalidCastException e) {
-                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Продолжительность\' в таблице \'Больничный лист\' равно DBNull" +
-                                ".", e);
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
                     }
                 }
-                set {
-                    this[this.tableБольничный_лист.ПродолжительностьColumn] = value;
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ВрачиRow ВрачиRow {
-                get {
-                    return ((ВрачиRow)(this.GetParentRow(this.Table.ParentRelations["Больничный_лист_FK"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Больничный_лист_FK"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Карточка_пациентаRow Карточка_пациентаRow {
-                get {
-                    return ((Карточка_пациентаRow)(this.GetParentRow(this.Table.ParentRelations["Больничный_лист_FK_1"])));
-                }
-                set {
-                    this.SetParentRow(value, this.Table.ParentRelations["Больничный_лист_FK_1"]);
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsНомер_карточкиNull() {
-                return this.IsNull(this.tableБольничный_лист.Номер_карточкиColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetНомер_карточкиNull() {
-                this[this.tableБольничный_лист.Номер_карточкиColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsФИО_пациентаNull() {
-                return this.IsNull(this.tableБольничный_лист.ФИО_пациентаColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetФИО_пациентаNull() {
-                this[this.tableБольничный_лист.ФИО_пациентаColumn] = global::System.Convert.DBNull;
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public bool IsПродолжительностьNull() {
-                return this.IsNull(this.tableБольничный_лист.ПродолжительностьColumn);
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public void SetПродолжительностьNull() {
-                this[this.tableБольничный_лист.ПродолжительностьColumn] = global::System.Convert.DBNull;
+                xs.Add(dsSchema);
+                return type;
             }
         }
         
@@ -2513,23 +2265,23 @@ namespace DatabaseBasics.Databases {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow[] GetБольничный_листRows() {
-                if ((this.Table.ChildRelations["Больничный_лист_FK"] == null)) {
-                    return new Больничный_листRow[0];
-                }
-                else {
-                    return ((Больничный_листRow[])(base.GetChildRows(this.Table.ChildRelations["Больничный_лист_FK"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public Сведение_о_посещаемостяхRow[] GetСведение_о_посещаемостяхRows() {
                 if ((this.Table.ChildRelations["Сведение_о_посещаемостях_FK"] == null)) {
                     return new Сведение_о_посещаемостяхRow[0];
                 }
                 else {
                     return ((Сведение_о_посещаемостяхRow[])(base.GetChildRows(this.Table.ChildRelations["Сведение_о_посещаемостях_FK"])));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow[] GetБольничный_листRows() {
+                if ((this.Table.ChildRelations["Больничный_лист_FK"] == null)) {
+                    return new Больничный_листRow[0];
+                }
+                else {
+                    return ((Больничный_листRow[])(base.GetChildRows(this.Table.ChildRelations["Больничный_лист_FK"])));
                 }
             }
         }
@@ -2822,17 +2574,6 @@ namespace DatabaseBasics.Databases {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow[] GetБольничный_листRows() {
-                if ((this.Table.ChildRelations["Больничный_лист_FK_1"] == null)) {
-                    return new Больничный_листRow[0];
-                }
-                else {
-                    return ((Больничный_листRow[])(base.GetChildRows(this.Table.ChildRelations["Больничный_лист_FK_1"])));
-                }
-            }
-            
-            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public Сведение_о_посещаемостяхRow[] GetСведение_о_посещаемостяхRows() {
                 if ((this.Table.ChildRelations["Сведение_о_посещаемостях_FK_карточка"] == null)) {
                     return new Сведение_о_посещаемостяхRow[0];
@@ -2841,39 +2582,125 @@ namespace DatabaseBasics.Databases {
                     return ((Сведение_о_посещаемостяхRow[])(base.GetChildRows(this.Table.ChildRelations["Сведение_о_посещаемостях_FK_карточка"])));
                 }
             }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow[] GetБольничный_листRows() {
+                if ((this.Table.ChildRelations["Больничный_лист_FK_1"] == null)) {
+                    return new Больничный_листRow[0];
+                }
+                else {
+                    return ((Больничный_листRow[])(base.GetChildRows(this.Table.ChildRelations["Больничный_лист_FK_1"])));
+                }
+            }
         }
         
         /// <summary>
-        ///Row event argument class
+        ///Represents strongly named DataRow class.
         ///</summary>
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public class Больничный_листRowChangeEvent : global::System.EventArgs {
+        public partial class Больничный_листRow : global::System.Data.DataRow {
             
-            private Больничный_листRow eventRow;
-            
-            private global::System.Data.DataRowAction eventAction;
+            private Больничный_листDataTable tableБольничный_лист;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRowChangeEvent(Больничный_листRow row, global::System.Data.DataRowAction action) {
-                this.eventRow = row;
-                this.eventAction = action;
+            internal Больничный_листRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tableБольничный_лист = ((Больничный_листDataTable)(this.Table));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public Больничный_листRow Row {
+            public int id {
                 get {
-                    return this.eventRow;
+                    return ((int)(this[this.tableБольничный_лист.idColumn]));
+                }
+                set {
+                    this[this.tableБольничный_лист.idColumn] = value;
                 }
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public global::System.Data.DataRowAction Action {
+            public System.DateTime Начало_больничного {
                 get {
-                    return this.eventAction;
+                    return ((global::System.DateTime)(this[this.tableБольничный_лист.Начало_больничногоColumn]));
                 }
+                set {
+                    this[this.tableБольничный_лист.Начало_больничногоColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public System.DateTime Конец_больничного {
+                get {
+                    return ((global::System.DateTime)(this[this.tableБольничный_лист.Конец_больничногоColumn]));
+                }
+                set {
+                    this[this.tableБольничный_лист.Конец_больничногоColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Врач {
+                get {
+                    return ((int)(this[this.tableБольничный_лист.ВрачColumn]));
+                }
+                set {
+                    this[this.tableБольничный_лист.ВрачColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public int Номер_карточки {
+                get {
+                    try {
+                        return ((int)(this[this.tableБольничный_лист.Номер_карточкиColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("Значение для столбца \'Номер карточки\' в таблице \'Больничный лист\' равно DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableБольничный_лист.Номер_карточкиColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ВрачиRow ВрачиRow {
+                get {
+                    return ((ВрачиRow)(this.GetParentRow(this.Table.ParentRelations["Больничный_лист_FK"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Больничный_лист_FK"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Карточка_пациентаRow Карточка_пациентаRow {
+                get {
+                    return ((Карточка_пациентаRow)(this.GetParentRow(this.Table.ParentRelations["Больничный_лист_FK_1"])));
+                }
+                set {
+                    this.SetParentRow(value, this.Table.ParentRelations["Больничный_лист_FK_1"]);
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsНомер_карточкиNull() {
+                return this.IsNull(this.tableБольничный_лист.Номер_карточкиColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetНомер_карточкиNull() {
+                this[this.tableБольничный_лист.Номер_карточкиColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -3012,360 +2839,44 @@ namespace DatabaseBasics.Databases {
                 }
             }
         }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public class Больничный_листRowChangeEvent : global::System.EventArgs {
+            
+            private Больничный_листRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRowChangeEvent(Больничный_листRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public Больничный_листRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
     }
 }
 namespace DatabaseBasics.Databases.HospitalDataSetTableAdapters {
     
-    
-    /// <summary>
-    ///Represents the connection and commands used to retrieve and save data.
-    ///</summary>
-    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
-    [global::System.ComponentModel.ToolboxItem(true)]
-    [global::System.ComponentModel.DataObjectAttribute(true)]
-    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
-        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
-    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-    public partial class Больничный_листTableAdapter : global::System.ComponentModel.Component {
-        
-        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
-        
-        private global::System.Data.SqlClient.SqlConnection _connection;
-        
-        private global::System.Data.SqlClient.SqlTransaction _transaction;
-        
-        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
-        
-        private bool _clearBeforeFill;
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public Больничный_листTableAdapter() {
-            this.ClearBeforeFill = true;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
-            get {
-                if ((this._adapter == null)) {
-                    this.InitAdapter();
-                }
-                return this._adapter;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlConnection Connection {
-            get {
-                if ((this._connection == null)) {
-                    this.InitConnection();
-                }
-                return this._connection;
-            }
-            set {
-                this._connection = value;
-                if ((this.Adapter.InsertCommand != null)) {
-                    this.Adapter.InsertCommand.Connection = value;
-                }
-                if ((this.Adapter.DeleteCommand != null)) {
-                    this.Adapter.DeleteCommand.Connection = value;
-                }
-                if ((this.Adapter.UpdateCommand != null)) {
-                    this.Adapter.UpdateCommand.Connection = value;
-                }
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    if ((this.CommandCollection[i] != null)) {
-                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
-                    }
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        internal global::System.Data.SqlClient.SqlTransaction Transaction {
-            get {
-                return this._transaction;
-            }
-            set {
-                this._transaction = value;
-                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
-                    this.CommandCollection[i].Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.DeleteCommand != null))) {
-                    this.Adapter.DeleteCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.InsertCommand != null))) {
-                    this.Adapter.InsertCommand.Transaction = this._transaction;
-                }
-                if (((this.Adapter != null) 
-                            && (this.Adapter.UpdateCommand != null))) {
-                    this.Adapter.UpdateCommand.Transaction = this._transaction;
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
-            get {
-                if ((this._commandCollection == null)) {
-                    this.InitCommandCollection();
-                }
-                return this._commandCollection;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public bool ClearBeforeFill {
-            get {
-                return this._clearBeforeFill;
-            }
-            set {
-                this._clearBeforeFill = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitAdapter() {
-            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
-            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
-            tableMapping.SourceTable = "Table";
-            tableMapping.DataSetTable = "Больничный лист";
-            tableMapping.ColumnMappings.Add("id", "id");
-            tableMapping.ColumnMappings.Add("Начало больничного", "Начало больничного");
-            tableMapping.ColumnMappings.Add("Конец больничного", "Конец больничного");
-            tableMapping.ColumnMappings.Add("Врач", "Врач");
-            tableMapping.ColumnMappings.Add("Номер карточки", "Номер карточки");
-            this._adapter.TableMappings.Add(tableMapping);
-            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.DeleteCommand.Connection = this.Connection;
-            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Больничный лист] WHERE (([id] = @Original_id) AND ([Начало больничного] = @Original_Начало_больничного) AND ([Конец больничного] = @Original_Конец_больничного) AND ([Врач] = @Original_Врач) AND ((@IsNull_Номер_карточки = 1 AND [Номер карточки] IS NULL) OR ([Номер карточки] = @Original_Номер_карточки)))";
-            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Больничный лист] ([Начало больничного], [Конец больничного], [Врач], [Номер карточки]) VALUES (@Начало_больничного, @Конец_больничного, @Врач, @Номер_карточки);
-SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM [Больничный лист] WHERE (id = SCOPE_IDENTITY())";
-            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
-            this._adapter.UpdateCommand.Connection = this.Connection;
-            this._adapter.UpdateCommand.CommandText = @"UPDATE [Больничный лист] SET [Начало больничного] = @Начало_больничного, [Конец больничного] = @Конец_больничного, [Врач] = @Врач, [Номер карточки] = @Номер_карточки WHERE (([id] = @Original_id) AND ([Начало больничного] = @Original_Начало_больничного) AND ([Конец больничного] = @Original_Конец_больничного) AND ([Врач] = @Original_Врач) AND ((@IsNull_Номер_карточки = 1 AND [Номер карточки] IS NULL) OR ([Номер карточки] = @Original_Номер_карточки)));
-SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM [Больничный лист] WHERE (id = @id)";
-            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
-            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitConnection() {
-            this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::DatabaseBasics.Properties.Settings.Default.ПоликлиникаConnectionString;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
-            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[0].Connection = this.Connection;
-            this._commandCollection[0].CommandText = "SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM" +
-                " [Больничный лист]";
-            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(HospitalDataSet.Больничный_листDataTable dataTable) {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            if ((this.ClearBeforeFill == true)) {
-                dataTable.Clear();
-            }
-            int returnValue = this.Adapter.Fill(dataTable);
-            return returnValue;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual HospitalDataSet.Больничный_листDataTable GetData() {
-            this.Adapter.SelectCommand = this.CommandCollection[0];
-            HospitalDataSet.Больничный_листDataTable dataTable = new HospitalDataSet.Больничный_листDataTable(true);
-            this.Adapter.Fill(dataTable);
-            return dataTable;
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(HospitalDataSet.Больничный_листDataTable dataTable) {
-            return this.Adapter.Update(dataTable);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(HospitalDataSet dataSet) {
-            return this.Adapter.Update(dataSet, "Больничный лист");
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow dataRow) {
-            return this.Adapter.Update(new global::System.Data.DataRow[] {
-                        dataRow});
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(global::System.Data.DataRow[] dataRows) {
-            return this.Adapter.Update(dataRows);
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
-        public virtual int Delete(int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки) {
-            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
-            this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_Начало_больничного));
-            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_Конец_больничного));
-            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_Врач));
-            if ((Original_Номер_карточки.HasValue == true)) {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
-                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Номер_карточки.Value));
-            }
-            else {
-                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
-                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
-            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.DeleteCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.DeleteCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки) {
-            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(Начало_больничного));
-            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(Конец_больничного));
-            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Врач));
-            if ((Номер_карточки.HasValue == true)) {
-                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Номер_карточки.Value));
-            }
-            else {
-                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
-            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.InsertCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.InsertCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки, int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки, int id) {
-            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(Начало_больничного));
-            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(Конец_больничного));
-            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Врач));
-            if ((Номер_карточки.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Номер_карточки.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id));
-            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Original_Начало_больничного));
-            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_Конец_больничного));
-            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Врач));
-            if ((Original_Номер_карточки.HasValue == true)) {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
-                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Номер_карточки.Value));
-            }
-            else {
-                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
-                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
-            }
-            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(id));
-            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
-            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                this.Adapter.UpdateCommand.Connection.Open();
-            }
-            try {
-                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
-                return returnValue;
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    this.Adapter.UpdateCommand.Connection.Close();
-                }
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
-        public virtual int Update(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки, int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки) {
-            return this.Update(Начало_больничного, Конец_больничного, Врач, Номер_карточки, Original_id, Original_Начало_больничного, Original_Конец_больничного, Original_Врач, Original_Номер_карточки, Original_id);
-        }
-    }
     
     /// <summary>
     ///Represents the connection and commands used to retrieve and save data.
@@ -4932,6 +4443,356 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
     }
     
     /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class Больничный_листTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.SqlClient.SqlDataAdapter _adapter;
+        
+        private global::System.Data.SqlClient.SqlConnection _connection;
+        
+        private global::System.Data.SqlClient.SqlTransaction _transaction;
+        
+        private global::System.Data.SqlClient.SqlCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public Больничный_листTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected internal global::System.Data.SqlClient.SqlDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.SqlClient.SqlCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        internal global::System.Data.SqlClient.SqlTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        protected global::System.Data.SqlClient.SqlCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.SqlClient.SqlDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "Больничный лист";
+            tableMapping.ColumnMappings.Add("id", "id");
+            tableMapping.ColumnMappings.Add("Начало больничного", "Начало больничного");
+            tableMapping.ColumnMappings.Add("Конец больничного", "Конец больничного");
+            tableMapping.ColumnMappings.Add("Врач", "Врач");
+            tableMapping.ColumnMappings.Add("Номер карточки", "Номер карточки");
+            this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [Больничный лист] WHERE (([id] = @Original_id) AND ([Начало больничного] = @Original_Начало_больничного) AND ([Конец больничного] = @Original_Конец_больничного) AND ([Врач] = @Original_Врач) AND ((@IsNull_Номер_карточки = 1 AND [Номер карточки] IS NULL) OR ([Номер карточки] = @Original_Номер_карточки)))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.InsertCommand.Connection = this.Connection;
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [Больничный лист] ([Начало больничного], [Конец больничного], [Врач], [Номер карточки]) VALUES (@Начало_больничного, @Конец_больничного, @Врач, @Номер_карточки);
+SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM [Больничный лист] WHERE (id = SCOPE_IDENTITY())";
+            this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [Больничный лист] SET [Начало больничного] = @Начало_больничного, [Конец больничного] = @Конец_больничного, [Врач] = @Врач, [Номер карточки] = @Номер_карточки WHERE (([id] = @Original_id) AND ([Начало больничного] = @Original_Начало_больничного) AND ([Конец больничного] = @Original_Конец_больничного) AND ([Врач] = @Original_Врач) AND ((@IsNull_Номер_карточки = 1 AND [Номер карточки] IS NULL) OR ([Номер карточки] = @Original_Номер_карточки)));
+SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM [Больничный лист] WHERE (id = @id)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_id", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Начало_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Начало больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Конец_больничного", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Конец больничного", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Врач", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Врач", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Номер_карточки", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Номер карточки", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@id", global::System.Data.SqlDbType.Int, 4, global::System.Data.ParameterDirection.Input, 0, 0, "id", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.SqlClient.SqlConnection();
+            this._connection.ConnectionString = global::DatabaseBasics.Properties.Settings.Default.ПоликлиникаConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[1];
+            this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = "SELECT id, [Начало больничного], [Конец больничного], Врач, [Номер карточки] FROM" +
+                " [Больничный лист]";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
+        public virtual int Fill(HospitalDataSet.Больничный_листDataTable dataTable) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            if ((this.ClearBeforeFill == true)) {
+                dataTable.Clear();
+            }
+            int returnValue = this.Adapter.Fill(dataTable);
+            return returnValue;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual HospitalDataSet.Больничный_листDataTable GetData() {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            HospitalDataSet.Больничный_листDataTable dataTable = new HospitalDataSet.Больничный_листDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(HospitalDataSet.Больничный_листDataTable dataTable) {
+            return this.Adapter.Update(dataTable);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(HospitalDataSet dataSet) {
+            return this.Adapter.Update(dataSet, "Больничный лист");
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow dataRow) {
+            return this.Adapter.Update(new global::System.Data.DataRow[] {
+                        dataRow});
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        public virtual int Update(global::System.Data.DataRow[] dataRows) {
+            return this.Adapter.Update(dataRows);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_id));
+            this.Adapter.DeleteCommand.Parameters[1].Value = ((System.DateTime)(Original_Начало_больничного));
+            this.Adapter.DeleteCommand.Parameters[2].Value = ((System.DateTime)(Original_Конец_больничного));
+            this.Adapter.DeleteCommand.Parameters[3].Value = ((int)(Original_Врач));
+            if ((Original_Номер_карточки.HasValue == true)) {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Номер_карточки.Value));
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[5].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
+        public virtual int Insert(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки) {
+            this.Adapter.InsertCommand.Parameters[0].Value = ((System.DateTime)(Начало_больничного));
+            this.Adapter.InsertCommand.Parameters[1].Value = ((System.DateTime)(Конец_больничного));
+            this.Adapter.InsertCommand.Parameters[2].Value = ((int)(Врач));
+            if ((Номер_карточки.HasValue == true)) {
+                this.Adapter.InsertCommand.Parameters[3].Value = ((int)(Номер_карточки.Value));
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
+            if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.InsertCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.InsertCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.InsertCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки, int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки, int id) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((System.DateTime)(Начало_больничного));
+            this.Adapter.UpdateCommand.Parameters[1].Value = ((System.DateTime)(Конец_больничного));
+            this.Adapter.UpdateCommand.Parameters[2].Value = ((int)(Врач));
+            if ((Номер_карточки.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((int)(Номер_карточки.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[4].Value = ((int)(Original_id));
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((System.DateTime)(Original_Начало_больничного));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Original_Конец_больничного));
+            this.Adapter.UpdateCommand.Parameters[7].Value = ((int)(Original_Врач));
+            if ((Original_Номер_карточки.HasValue == true)) {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((int)(Original_Номер_карточки.Value));
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            this.Adapter.UpdateCommand.Parameters[10].Value = ((int)(id));
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(System.DateTime Начало_больничного, System.DateTime Конец_больничного, int Врач, global::System.Nullable<int> Номер_карточки, int Original_id, System.DateTime Original_Начало_больничного, System.DateTime Original_Конец_больничного, int Original_Врач, global::System.Nullable<int> Original_Номер_карточки) {
+            return this.Update(Начало_больничного, Конец_больничного, Врач, Номер_карточки, Original_id, Original_Начало_больничного, Original_Конец_больничного, Original_Врач, Original_Номер_карточки, Original_id);
+        }
+    }
+    
+    /// <summary>
     ///TableAdapterManager is used to coordinate TableAdapters in the dataset to enable Hierarchical Update scenarios
     ///</summary>
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4943,8 +4804,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
         
         private UpdateOrderOption _updateOrder;
         
-        private Больничный_листTableAdapter _больничный_листTableAdapter;
-        
         private ВрачиTableAdapter _врачиTableAdapter;
         
         private РасписаниеTableAdapter _расписаниеTableAdapter;
@@ -4952,6 +4811,8 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
         private Сведение_о_посещаемостяхTableAdapter _сведение_о_посещаемостяхTableAdapter;
         
         private Карточка_пациентаTableAdapter _карточка_пациентаTableAdapter;
+        
+        private Больничный_листTableAdapter _больничный_листTableAdapter;
         
         private bool _backupDataSetBeforeUpdate;
         
@@ -4965,20 +4826,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
             }
             set {
                 this._updateOrder = value;
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
-            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
-            "a", "System.Drawing.Design.UITypeEditor")]
-        public Больничный_листTableAdapter Больничный_листTableAdapter {
-            get {
-                return this._больничный_листTableAdapter;
-            }
-            set {
-                this._больничный_листTableAdapter = value;
             }
         }
         
@@ -5040,6 +4887,20 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.EditorAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterManagerPropertyEditor, Microso" +
+            "ft.VSDesigner, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3" +
+            "a", "System.Drawing.Design.UITypeEditor")]
+        public Больничный_листTableAdapter Больничный_листTableAdapter {
+            get {
+                return this._больничный_листTableAdapter;
+            }
+            set {
+                this._больничный_листTableAdapter = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public bool BackupDataSetBeforeUpdate {
             get {
                 return this._backupDataSetBeforeUpdate;
@@ -5057,10 +4918,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                 if ((this._connection != null)) {
                     return this._connection;
                 }
-                if (((this._больничный_листTableAdapter != null) 
-                            && (this._больничный_листTableAdapter.Connection != null))) {
-                    return this._больничный_листTableAdapter.Connection;
-                }
                 if (((this._врачиTableAdapter != null) 
                             && (this._врачиTableAdapter.Connection != null))) {
                     return this._врачиTableAdapter.Connection;
@@ -5077,6 +4934,10 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                             && (this._карточка_пациентаTableAdapter.Connection != null))) {
                     return this._карточка_пациентаTableAdapter.Connection;
                 }
+                if (((this._больничный_листTableAdapter != null) 
+                            && (this._больничный_листTableAdapter.Connection != null))) {
+                    return this._больничный_листTableAdapter.Connection;
+                }
                 return null;
             }
             set {
@@ -5090,9 +4951,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
         public int TableAdapterInstanceCount {
             get {
                 int count = 0;
-                if ((this._больничный_листTableAdapter != null)) {
-                    count = (count + 1);
-                }
                 if ((this._врачиTableAdapter != null)) {
                     count = (count + 1);
                 }
@@ -5103,6 +4961,9 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                     count = (count + 1);
                 }
                 if ((this._карточка_пациентаTableAdapter != null)) {
+                    count = (count + 1);
+                }
+                if ((this._больничный_листTableAdapter != null)) {
                     count = (count + 1);
                 }
                 return count;
@@ -5143,21 +5004,21 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                     allChangedRows.AddRange(updatedRows);
                 }
             }
-            if ((this._больничный_листTableAdapter != null)) {
-                global::System.Data.DataRow[] updatedRows = dataSet.Больничный_лист.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
-                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
-                if (((updatedRows != null) 
-                            && (0 < updatedRows.Length))) {
-                    result = (result + this._больничный_листTableAdapter.Update(updatedRows));
-                    allChangedRows.AddRange(updatedRows);
-                }
-            }
             if ((this._сведение_о_посещаемостяхTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.Сведение_о_посещаемостях.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
                 updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
                 if (((updatedRows != null) 
                             && (0 < updatedRows.Length))) {
                     result = (result + this._сведение_о_посещаемостяхTableAdapter.Update(updatedRows));
+                    allChangedRows.AddRange(updatedRows);
+                }
+            }
+            if ((this._больничный_листTableAdapter != null)) {
+                global::System.Data.DataRow[] updatedRows = dataSet.Больничный_лист.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
+                updatedRows = this.GetRealUpdatedRows(updatedRows, allAddedRows);
+                if (((updatedRows != null) 
+                            && (0 < updatedRows.Length))) {
+                    result = (result + this._больничный_листTableAdapter.Update(updatedRows));
                     allChangedRows.AddRange(updatedRows);
                 }
             }
@@ -5195,19 +5056,19 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                     allAddedRows.AddRange(addedRows);
                 }
             }
-            if ((this._больничный_листTableAdapter != null)) {
-                global::System.Data.DataRow[] addedRows = dataSet.Больничный_лист.Select(null, null, global::System.Data.DataViewRowState.Added);
-                if (((addedRows != null) 
-                            && (0 < addedRows.Length))) {
-                    result = (result + this._больничный_листTableAdapter.Update(addedRows));
-                    allAddedRows.AddRange(addedRows);
-                }
-            }
             if ((this._сведение_о_посещаемостяхTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.Сведение_о_посещаемостях.Select(null, null, global::System.Data.DataViewRowState.Added);
                 if (((addedRows != null) 
                             && (0 < addedRows.Length))) {
                     result = (result + this._сведение_о_посещаемостяхTableAdapter.Update(addedRows));
+                    allAddedRows.AddRange(addedRows);
+                }
+            }
+            if ((this._больничный_листTableAdapter != null)) {
+                global::System.Data.DataRow[] addedRows = dataSet.Больничный_лист.Select(null, null, global::System.Data.DataViewRowState.Added);
+                if (((addedRows != null) 
+                            && (0 < addedRows.Length))) {
+                    result = (result + this._больничный_листTableAdapter.Update(addedRows));
                     allAddedRows.AddRange(addedRows);
                 }
             }
@@ -5221,19 +5082,19 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private int UpdateDeletedRows(HospitalDataSet dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
-            if ((this._сведение_о_посещаемостяхTableAdapter != null)) {
-                global::System.Data.DataRow[] deletedRows = dataSet.Сведение_о_посещаемостях.Select(null, null, global::System.Data.DataViewRowState.Deleted);
-                if (((deletedRows != null) 
-                            && (0 < deletedRows.Length))) {
-                    result = (result + this._сведение_о_посещаемостяхTableAdapter.Update(deletedRows));
-                    allChangedRows.AddRange(deletedRows);
-                }
-            }
             if ((this._больничный_листTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.Больничный_лист.Select(null, null, global::System.Data.DataViewRowState.Deleted);
                 if (((deletedRows != null) 
                             && (0 < deletedRows.Length))) {
                     result = (result + this._больничный_листTableAdapter.Update(deletedRows));
+                    allChangedRows.AddRange(deletedRows);
+                }
+            }
+            if ((this._сведение_о_посещаемостяхTableAdapter != null)) {
+                global::System.Data.DataRow[] deletedRows = dataSet.Сведение_о_посещаемостях.Select(null, null, global::System.Data.DataViewRowState.Deleted);
+                if (((deletedRows != null) 
+                            && (0 < deletedRows.Length))) {
+                    result = (result + this._сведение_о_посещаемостяхTableAdapter.Update(deletedRows));
                     allChangedRows.AddRange(deletedRows);
                 }
             }
@@ -5300,11 +5161,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
             if ((dataSet.HasChanges() == false)) {
                 return 0;
             }
-            if (((this._больничный_листTableAdapter != null) 
-                        && (this.MatchTableAdapterConnection(this._больничный_листTableAdapter.Connection) == false))) {
-                throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
-                        "r, должны использовать одинаковую строку подключения.");
-            }
             if (((this._врачиTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._врачиTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
@@ -5322,6 +5178,11 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
             }
             if (((this._карточка_пациентаTableAdapter != null) 
                         && (this.MatchTableAdapterConnection(this._карточка_пациентаTableAdapter.Connection) == false))) {
+                throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
+                        "r, должны использовать одинаковую строку подключения.");
+            }
+            if (((this._больничный_листTableAdapter != null) 
+                        && (this.MatchTableAdapterConnection(this._больничный_листTableAdapter.Connection) == false))) {
                 throw new global::System.ArgumentException("Все адаптеры таблицы, управляемые диспетчером адаптера таблицы TableAdapterManage" +
                         "r, должны использовать одинаковую строку подключения.");
             }
@@ -5357,15 +5218,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
             try {
                 // ---- Prepare for update -----------
                 //
-                if ((this._больничный_листTableAdapter != null)) {
-                    revertConnections.Add(this._больничный_листTableAdapter, this._больничный_листTableAdapter.Connection);
-                    this._больничный_листTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
-                    this._больничный_листTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
-                    if (this._больничный_листTableAdapter.Adapter.AcceptChangesDuringUpdate) {
-                        this._больничный_листTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
-                        adaptersWithAcceptChangesDuringUpdate.Add(this._больничный_листTableAdapter.Adapter);
-                    }
-                }
                 if ((this._врачиTableAdapter != null)) {
                     revertConnections.Add(this._врачиTableAdapter, this._врачиTableAdapter.Connection);
                     this._врачиTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
@@ -5400,6 +5252,15 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                     if (this._карточка_пациентаTableAdapter.Adapter.AcceptChangesDuringUpdate) {
                         this._карточка_пациентаTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
                         adaptersWithAcceptChangesDuringUpdate.Add(this._карточка_пациентаTableAdapter.Adapter);
+                    }
+                }
+                if ((this._больничный_листTableAdapter != null)) {
+                    revertConnections.Add(this._больничный_листTableAdapter, this._больничный_листTableAdapter.Connection);
+                    this._больничный_листTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(workConnection));
+                    this._больничный_листTableAdapter.Transaction = ((global::System.Data.SqlClient.SqlTransaction)(workTransaction));
+                    if (this._больничный_листTableAdapter.Adapter.AcceptChangesDuringUpdate) {
+                        this._больничный_листTableAdapter.Adapter.AcceptChangesDuringUpdate = false;
+                        adaptersWithAcceptChangesDuringUpdate.Add(this._больничный_листTableAdapter.Adapter);
                     }
                 }
                 // 
@@ -5460,10 +5321,6 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                 if (workConnOpened) {
                     workConnection.Close();
                 }
-                if ((this._больничный_листTableAdapter != null)) {
-                    this._больничный_листTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._больничный_листTableAdapter]));
-                    this._больничный_листTableAdapter.Transaction = null;
-                }
                 if ((this._врачиTableAdapter != null)) {
                     this._врачиTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._врачиTableAdapter]));
                     this._врачиTableAdapter.Transaction = null;
@@ -5479,6 +5336,10 @@ SELECT id, ФИО, Адрес, Пол, Возраст, [Номер страхо�
                 if ((this._карточка_пациентаTableAdapter != null)) {
                     this._карточка_пациентаTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._карточка_пациентаTableAdapter]));
                     this._карточка_пациентаTableAdapter.Transaction = null;
+                }
+                if ((this._больничный_листTableAdapter != null)) {
+                    this._больничный_листTableAdapter.Connection = ((global::System.Data.SqlClient.SqlConnection)(revertConnections[this._больничный_листTableAdapter]));
+                    this._больничный_листTableAdapter.Transaction = null;
                 }
                 if ((0 < adaptersWithAcceptChangesDuringUpdate.Count)) {
                     global::System.Data.Common.DataAdapter[] adapters = new System.Data.Common.DataAdapter[adaptersWithAcceptChangesDuringUpdate.Count];

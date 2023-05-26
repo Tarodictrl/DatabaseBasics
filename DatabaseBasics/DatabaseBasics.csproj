@@ -123,11 +123,11 @@
     <None Include="Databases\HospitalDataSet.xsc">
       <DependentUpon>HospitalDataSet.xsd</DependentUpon>
     </None>
-    <None Include="Databases\HospitalDataSet.xsd">
+    <Resource Include="Databases\HospitalDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>HospitalDataSet.Designer.cs</LastGenOutput>
-    </None>
+    </Resource>
     <None Include="Databases\HospitalDataSet.xss">
       <DependentUpon>HospitalDataSet.xsd</DependentUpon>
     </None>
