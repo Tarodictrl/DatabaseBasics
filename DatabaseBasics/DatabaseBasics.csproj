@@ -54,6 +54,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SQLCommand\SQlBase.cs" />
+    <Compile Include="SQLCommand\SQLMedics.cs" />
+    <Compile Include="SQLCommand\SQLPatient.cs" />
     <Compile Include="View\Forms\AttendanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -183,5 +186,6 @@
   <ItemGroup>
     <None Include="Resources\SqlIcon.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
