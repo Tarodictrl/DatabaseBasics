@@ -54,6 +54,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HospitalDataSet.xsd</DependentUpon>
     </Compile>
+    <Compile Include="SQLCommand\SQlBase.cs" />
+    <Compile Include="SQLCommand\SQLMedics.cs" />
+    <Compile Include="SQLCommand\SQLPatient.cs" />
     <Compile Include="View\Forms\AttendanceForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -77,6 +80,12 @@
     </Compile>
     <Compile Include="View\Forms\SickLeaveForm.Designer.cs">
       <DependentUpon>SickLeaveForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="View\Forms\SQLForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\Forms\SQLForm.Designer.cs">
+      <DependentUpon>SQLForm.cs</DependentUpon>
     </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
@@ -116,6 +125,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="View\Forms\SickLeaveForm.resx">
       <DependentUpon>SickLeaveForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="View\Forms\SQLForm.resx">
+      <DependentUpon>SQLForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
@@ -171,5 +183,9 @@
   <ItemGroup>
     <None Include="Resources\medical-report.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\SqlIcon.png" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

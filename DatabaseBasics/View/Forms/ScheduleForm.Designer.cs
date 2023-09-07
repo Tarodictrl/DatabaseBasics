@@ -182,7 +182,7 @@
             this.расписаниеBindingNavigator.MovePreviousItem = this.bindingNavigatorMovePreviousItem;
             this.расписаниеBindingNavigator.Name = "расписаниеBindingNavigator";
             this.расписаниеBindingNavigator.PositionItem = this.bindingNavigatorPositionItem;
-            this.расписаниеBindingNavigator.Size = new System.Drawing.Size(405, 31);
+            this.расписаниеBindingNavigator.Size = new System.Drawing.Size(405, 27);
             this.расписаниеBindingNavigator.TabIndex = 0;
             this.расписаниеBindingNavigator.Text = "bindingNavigator1";
             // 
@@ -192,7 +192,7 @@
             this.bindingNavigatorAddNewItem.Image = ((System.Drawing.Image)(resources.GetObject("bindingNavigatorAddNewItem.Image")));
             this.bindingNavigatorAddNewItem.Name = "bindingNavigatorAddNewItem";
             this.bindingNavigatorAddNewItem.RightToLeftAutoMirrorImage = true;
-            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 28);
+            this.bindingNavigatorAddNewItem.Size = new System.Drawing.Size(29, 24);
             this.bindingNavigatorAddNewItem.Text = "Добавить";
             // 
             // bindingNavigatorCountItem
@@ -285,7 +285,7 @@
             // 
             this.idTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "id", true));
             this.idTextBox.Location = new System.Drawing.Point(149, 39);
-            this.idTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.idTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.idTextBox.Name = "idTextBox";
             this.idTextBox.Size = new System.Drawing.Size(221, 22);
             this.idTextBox.TabIndex = 2;
@@ -294,7 +294,7 @@
             // 
             this.время_работыTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "Время работы", true));
             this.время_работыTextBox.Location = new System.Drawing.Point(149, 71);
-            this.время_работыTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.время_работыTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.время_работыTextBox.Name = "время_работыTextBox";
             this.время_работыTextBox.Size = new System.Drawing.Size(221, 22);
             this.время_работыTextBox.TabIndex = 4;
@@ -303,7 +303,7 @@
             // 
             this.участокTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "Участок", true));
             this.участокTextBox.Location = new System.Drawing.Point(149, 103);
-            this.участокTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.участокTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.участокTextBox.Name = "участокTextBox";
             this.участокTextBox.Size = new System.Drawing.Size(221, 22);
             this.участокTextBox.TabIndex = 6;
@@ -312,7 +312,7 @@
             // 
             this.дни_приёмаTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "Дни приёма", true));
             this.дни_приёмаTextBox.Location = new System.Drawing.Point(149, 135);
-            this.дни_приёмаTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.дни_приёмаTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.дни_приёмаTextBox.Name = "дни_приёмаTextBox";
             this.дни_приёмаTextBox.Size = new System.Drawing.Size(221, 22);
             this.дни_приёмаTextBox.TabIndex = 8;
@@ -321,7 +321,7 @@
             // 
             this.часы_приёмаTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "Часы приёма", true));
             this.часы_приёмаTextBox.Location = new System.Drawing.Point(149, 167);
-            this.часы_приёмаTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.часы_приёмаTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.часы_приёмаTextBox.Name = "часы_приёмаTextBox";
             this.часы_приёмаTextBox.Size = new System.Drawing.Size(221, 22);
             this.часы_приёмаTextBox.TabIndex = 10;
@@ -330,7 +330,7 @@
             // 
             this.номер_кабинетаTextBox.DataBindings.Add(new System.Windows.Forms.Binding("Text", this.расписаниеBindingSource, "Номер кабинета", true));
             this.номер_кабинетаTextBox.Location = new System.Drawing.Point(149, 199);
-            this.номер_кабинетаTextBox.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.номер_кабинетаTextBox.Margin = new System.Windows.Forms.Padding(4);
             this.номер_кабинетаTextBox.Name = "номер_кабинетаTextBox";
             this.номер_кабинетаTextBox.Size = new System.Drawing.Size(221, 22);
             this.номер_кабинетаTextBox.TabIndex = 12;
@@ -353,7 +353,7 @@
             this.Controls.Add(номер_кабинетаLabel);
             this.Controls.Add(this.номер_кабинетаTextBox);
             this.Controls.Add(this.расписаниеBindingNavigator);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ScheduleForm";
             this.ShowIcon = false;
             this.Text = "Расписание";

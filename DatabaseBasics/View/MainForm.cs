@@ -61,6 +61,11 @@ namespace DatabaseBasics
         {
             ScheduleForm.Instance.ShowForm();
         }
+
+        private void toolStripButton8_Click(object sender, EventArgs e)
+        {
+            SQLForm.Instance.ShowForm();
+        }
     }
 
 }

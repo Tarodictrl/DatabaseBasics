@@ -4,5 +4,8 @@
 
     partial class HospitalDataSet
     {
+        partial class Больничный_листDataTable
+        {
+        }
     }
 }
